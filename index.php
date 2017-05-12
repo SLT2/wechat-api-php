@@ -185,27 +185,14 @@ class wechatCallbackapiTest
 		else if (strstr($keyword, "你好")){
             $content = "你好，有什么事可以帮到你吗？"; 
         }
-		else if (strstr($keyword, "俊达是个傻子")){
+		else if (strstr($keyword, "我是个傻子")){
             $content = "您说得对！"; 
         }
-		else if (strstr($keyword, "a")){
-            $content = "<a href='http://salitt.cortanasiri.cn/wxmp/salitt_app/jssdk/'>您说得对！</a>"; 
+		//其他回复
+        else{
+            $content = "对不起,我没能听懂您的意思，聊聊别的吧";
         }
 		
-		//图灵机器人自动回复api
-            else{
-                $url_tl='http://www.tuling123.com/openapi/api?key=54c19b1027cbfab37258c45b5f1284c6&info=';
-                $url_tl2=$url_tl.$keyword;
-                $result1= file_get_contents($url_tl2);
-                $content = substr($result1,23,-2);
-				if($content=="")
-					{$content = "对不起,我没能听懂您的意思，聊聊别的吧";}
-        }
-		/*
-		else{
-            $content = date("Y-m-d H:i:s",time())."\n\n".'<a href="http://m.cnblogs.com/?u=txw1958">技术支持 方倍工作室</a>';
-        }
-*/
         if(is_array($content)){
             if (isset($content[0])){
                 $result = $this->transmitNews($object, $content);
